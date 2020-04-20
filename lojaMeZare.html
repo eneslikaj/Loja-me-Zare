@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+    <title>Loja me Zare</title>
+
+    <style>
+        *
+        {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+    text-align: center;
+    width: 80%;
+    margin: 30px auto;
+}
+
+.zari {
+    display: inline-block;
+    text-align: center;
+}
+body{
+    background-color: #393E46;
+}
+h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: 2rem;
+    text-shadow: 5px 0 black;
+    color: #4ECCA3;
+    text-align: center;
+ }
+ h4 {
+    font-family:'Shadows Into Light', cursive;
+ }
+ h4:hover {
+    color: red;
+    }
+p {
+    font-family: 'Lobster', cursive;
+    text-shadow: 2px 0 black;
+    color: #4ECCA3;
+}
+img {
+    width: 100%;
+}
+footer{
+    margin-top: 20%;
+    text-align: center;
+    width: 80%;
+    margin: 150px auto;
+}
+
+        body 
+        {
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+ 
+        }
+        /* Kutia e lojes */
+        .kutia-lojes
+        {
+            width: 700px;
+            background: #393E46;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+
+            
+        }
+        .title h1
+        {
+          font-weight: bold;
+          text-align: center;
+          color:#FFFF;
+        }
+        /* Seksioni i lojtarit */
+        .fusha-lojes
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            color: white;
+            margin-top: 50px;
+
+            
+        }
+        .fusha-lojes .points-area 
+        {
+            display: flex;
+            flex-direction: row;
+        }
+        .fusha-lojes .fusfusha-lojtarit 
+        {
+            
+            margin-bottom: 50px;
+        }
+        .fusha-lojes .fusfusha-lojtarit div 
+        {
+            margin-bottom: 15px;
+        }
+        .fusha-lojes .points-area div 
+        {
+            margin-left: 15px;
+        }
+
+      /* Seksioni i butonave */
+        .buttons 
+        {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+        }
+        .buttons button 
+        {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(90deg,#03DAF7,#0059F5);
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="kutia-lojes">
+        <div class="title">
+            <h1>Loja me Zare</h1>
+            <h4><center>Nga Enesi Likaj</center></h4>
+        </div>
+        <div class="fusha-lojes">
+            <div class="fusfusha-lojtarit">
+                <div class="zari-1" style="display: flex; flex-direction: row; align-items: center;">
+                    <h1>Zari i pare:</h1 > 
+                    <img class="img1" src="Foto/die6.png">
+                </div>
+                <div class="zari-2" style="display: flex; flex-direction: row; align-items: center;">
+                    <h1 >Zari i dyte:</h1> 
+                    <img class="img2" src="Foto/die6.png">
+                </div>
+
+            </div>
+            <div class="points-area">
+               <div><h2 style="color: lime;">Fitore</h2><h3 class="counter-1" >0</h3></div>
+               <div><h2 style="color: red;">Humbje</h2><h3 class="counter-2">0</h3></div>
+            </div>
+        </div>
+        <div class="message" style="display: flex;justify-content: center; padding-bottom: 25px; font-size: 2rem;"></div>
+        <div class="buttons">
+            <button type="button">Hidhni Zaret</button>
+
+        </div>
+    </div>
+    
+
+
+    <script>
+
+const ZariParefusha=document.querySelector('.img1');
+const ZariDytefusha=document.querySelector('.img2');
+const button=document.querySelector('button');
+const FushaMesazh=document.querySelector('.message');
+const numuruesi1=document.querySelector('.counter-1');
+const numuruesi2=document.querySelector('.counter-2');
+const condition=false;
+let zari1;
+let zari2;
+let numuruesFitore=0;
+let numuruesHumbje=0;
+let message;
+
+
+const fushaFituese=[{iPare: 3,iDyte: 3},{iPare: 5,iDyte: 5},{iPare: 5,iDyte: 6},{iPare: 6,iDyte: 5},{iPare: 6,iDyte: 6},];
+const fushaHumbse=[{iPare: 1,iDyte: 1},{iPare: 2,iDyte: 1},{iPare: 1,iDyte: 2},{iPare: 2,iDyte: 2},{iPare: 4,iDyte: 4},];
+const winningLength=fushaFituese.length;
+const losingLength=fushaHumbse.length;
+
+                    
+const HidhZaret=()=>
+{
+    zari1=Math.floor(Math.random()*6)+1;
+    ZaripareFoto = "Foto/die" + zari1+".png";
+    zari2=Math.floor(Math.random()*6)+1;
+    ZaridyteFoto = "Foto/die" + zari2+".png";
+    document.querySelector('.img1').setAttribute('src', ZaripareFoto);
+    document.querySelector('.img2').setAttribute('src', ZaridyteFoto);
+    updateUI(zari1,zari2);
+    for(let i=0; i<winningLength; i++)
+    {
+        if(zari1===fushaFituese[i].iPare && zari2===fushaFituese[i].iDyte)
+        {
+            message='Ti fitove';
+            changeMessage(message);
+            numuruesFitore++;
+            updateCounters(numuruesFitore,numuruesHumbje);
+            
+        } 
+        else if(zari1===fushaHumbse[i].iPare && zari2===fushaHumbse[i].iDyte)
+        {
+            message='Ti humbe';
+            changeMessage(message);
+            numuruesHumbje++;
+            updateCounters(numuruesFitore,numuruesHumbje);
+            
+        } 
+        else 
+        {
+            changeMessage('Hidh perseri');
+        }
+
+    }
+}
+
+
+
+
+const updateUI=(Zaripar,Zaridyt)=>
+{
+ZariParefusha.textContent=Zaripar;
+ZariDytefusha.textContent=Zaridyt;
+
+}
+
+button.addEventListener('click',e=>
+{
+HidhZaret();
+})
+
+
+const changeMessage=(messageText)=>
+{
+    FushaMesazh.textContent=messageText;
+}
+
+const updateCounters=(numuruesi1vlera,numuruesi2vlera)=>
+{
+    numuruesi1.textContent=numuruesi1vlera;
+    numuruesi2.textContent=numuruesi2vlera;
+}
+
+    </script>
+</body>
+</html>
